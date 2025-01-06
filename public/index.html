@@ -1,17 +1,27 @@
 <!DOCTYPE html>
-<script src="/socket.io/socket.io.js"></script>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bingo Game</title>
   <link rel="stylesheet" href="style.css">
+  <script src="/socket.io/socket.io.js"></script>
 </head>
-
 <body>
   <div id="text">
     <h1>Ates ist ein pepega</h1>
   </div>
+  
+  <!-- Color selection UI -->
+  <div id="color-selection">
+    <label>
+      <input type="radio" name="color" value="green" checked> Green
+    </label>
+    <label>
+      <input type="radio" name="color" value="blue"> Blue
+    </label>
+  </div>
+
   <div id="app">
     <div id="bingo-container"></div>
   </div>
