@@ -52,3 +52,22 @@ body {
   background-color: #329132; /* Marked tiles */
   color: #fff; /* Text color for readability */
 }
+
+.marked-green {
+  background-color: #329132; /* Green team color */
+  color: #fff; /* Text color for readability */
+}
+
+.marked-blue {
+  background-color: #1e90ff; /* Blue team color */
+  color: #fff; /* Text color for readability */
+}
+
+.half-marked {
+  background: linear-gradient(
+    90deg,
+    #329132 50%,
+    #1e90ff 50%
+  ); /* 50/50 split */
+  color: #fff; /* Text color for readability */
+}
