@@ -2,73 +2,53 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  display: flex; /* Flexbox for centering */
+  flex-direction: column; /* Stack items vertically */
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+  height: 100vh; /* Full viewport height */
   background-color: #094617;
-  overflow: hidden;
+  overflow: hidden; /* Prevent scrolling if unnecessary */
 }
-
 #text {
   text-align: center;
   margin-bottom: 20px;
   color: #ca4545;
 }
-
-#color-selection {
-  margin-bottom: 20px;
-  color: #ca4545;
-}
-
 #bingo-container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: auto;
-  max-width: 600px;
+  grid-template-columns: repeat(5, 1fr); /* Always 5 columns */
+  gap: 10px; /* Space between tiles */
+  background-color: #fff; /* White background for the box */
+  padding: 20px; /* Space inside the container */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  width: auto; /* Automatically adjust width */
+  max-width: 600px; /* Limit maximum width */
 }
 
 .tile {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
+  display: flex; /* Use Flexbox for centering text */
+  justify-content: center; /* Center text horizontally */
+  align-items: center; /* Center text vertically */
+  padding: 10px; /* Add space for text */
   text-align: center;
-  font-size: 14px;
+  font-size: 14px; /* Font size for readability */
   font-weight: bold;
-  word-wrap: break-word;
+  word-wrap: break-word; /* Allow text to wrap */
   border: 1px solid #000;
-  border-radius: 5px;
-  background-color: #922b24; /* Default background */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #922b24;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
-  min-height: 100px;
+  min-height: 100px; /* Minimum height for tiles */
 }
 
 .tile:hover {
-  background-color: #ca4545;
+  background-color: #ca4545; /* Hover effect */
 }
 
-/* When marked green */
-.green {
-  background-color: #329132;
-  color: #fff;
-}
-
-/* When marked blue */
-.blue {
-  background-color: #0066cc;
-  color: #fff;
-}
-
-/* When both green and blue (half-half) */
-.half-half {
-  background: linear-gradient(to right, #329132 50%, #0066cc 50%);
-  color: #fff;
+.marked {
+  background-color: #329132; /* Marked tiles */
+  color: #fff; /* Text color for readability */
 }

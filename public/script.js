@@ -1,17 +1,7 @@
 const bingoContainer = document.getElementById("bingo-container");
 const socket = io(); // Connect to the Socket.IO server
 
-// Store the selected color (green or blue)
-let selectedColor = "green";
-
-// Listen for color change (radio buttons)
-document.querySelectorAll('input[name="color"]').forEach((radio) => {
-  radio.addEventListener("change", (e) => {
-    selectedColor = e.target.value; // Update selected color
-  });
-});
-
-// Bingo card content
+// Render the bingo grid
 const bingoCard = [
   "Climb 3 unique spiritsprings.",
   "Kill 2 (adult) crabs.",
@@ -47,32 +37,12 @@ const renderGrid = (state) => {
     const tile = document.createElement("div");
     tile.className = "tile";
     tile.textContent = sentence;
-
-    const tileState = state[index];
-
-    // Apply the correct class based on the tile's state
-    if (tileState === "green") {
-      tile.classList.add("green");
-    } else if (tileState === "blue") {
-      tile.classList.add("blue");
-    } else if (tileState === "both") {
-      tile.classList.add("half-half");
+    if (state[index]) {
+      tile.classList.add("marked"); // Mark tiles based on state
     }
-
     tile.onclick = () => {
-      // Toggle the color based on the selected color
-      let newState = "";
-      if (tileState === "green") {
-        newState = selectedColor === "blue" ? "both" : "green";
-      } else if (tileState === "blue") {
-        newState = selectedColor === "green" ? "both" : "blue";
-      } else {
-        newState = selectedColor;
-      }
-
-      socket.emit("toggleTile", { index, newState }); // Notify server of the change
+      socket.emit("toggleTile", index); // Notify server of the change
     };
-
     bingoContainer.appendChild(tile);
   });
 };
