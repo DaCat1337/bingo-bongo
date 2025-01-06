@@ -1,5 +1,6 @@
 const bingoContainer = document.getElementById("bingo-container");
 const socket = io(); // Connect to the Socket.IO server
+let team = null; // User's team
 
 // Render the bingo grid
 const bingoCard = [
@@ -37,11 +38,20 @@ const renderGrid = (state) => {
     const tile = document.createElement("div");
     tile.className = "tile";
     tile.textContent = sentence;
-    if (state[index]) {
-      tile.classList.add("marked"); // Mark tiles based on state
+    if (state[index].green && state[index].blue) {
+      tile.classList.add("half-marked"); // Both teams marked
+    } else if (state[index].green) {
+      tile.classList.add("marked-green"); // Green team marked
+    } else if (state[index].blue) {
+      tile.classList.add("marked-blue"); // Blue team marked
     }
     tile.onclick = () => {
-      socket.emit("toggleTile", index); // Notify server of the change
+      if (team) {
+        console.log(`Tile clicked: ${index}, Team: ${team}`);
+        socket.emit("toggleTile", { index, team }); // Notify server of the change
+      } else {
+        alert("Please select a team first!");
+      }
     };
     bingoContainer.appendChild(tile);
   });
@@ -49,5 +59,16 @@ const renderGrid = (state) => {
 
 // Listen for bingo state updates from the server
 socket.on("updateBingoState", (state) => {
+  console.log("Bingo state updated:", state);
   renderGrid(state);
 });
+
+// Handle team selection
+document.getElementById("team-green").onclick = () => {
+  team = "green";
+  console.log("Selected team: Green");
+};
+document.getElementById("team-blue").onclick = () => {
+  team = "blue";
+  console.log("Selected team: Blue");
+};
