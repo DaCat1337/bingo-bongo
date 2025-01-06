@@ -9,6 +9,16 @@ body {
   background-color: #094617;
   overflow: hidden; /* Prevent scrolling if unnecessary */
 }
+#text {
+  text-align: center; /* Centers the text */
+  margin-bottom: 20px; /* Adds space between the text and the bingo grid */
+
+  font-size: 1.2em;
+  color: #555; /* Light gray color for description text */
+
+  font-size: 2em;
+  font-weight: bold;
+}
 #bingo-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr); /* Always 5 columns */
